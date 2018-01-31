@@ -4,7 +4,12 @@ from setuptools import setup, find_packages
 
 long_desc = open('README.rst').read()
 
-requires = ['Sphinx>=0.6', 'jsonref', 'jsonpointer']
+requires = [
+    'Sphinx>=0.6',
+    'jsonref',
+    'jsonpointer',
+    'recommonmark',
+]
 
 setup(
     name='sphinxcontrib-jsonschema',

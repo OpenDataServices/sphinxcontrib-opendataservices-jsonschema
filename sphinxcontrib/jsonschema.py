@@ -17,6 +17,7 @@ from docutils import nodes
 from docutils.statemachine import ViewList
 from docutils.parsers.rst import directives, Directive
 from docutils.utils import SystemMessage
+from recommonmark.parser import CommonMarkParser
 
 if sys.version_info < (2, 7):
     import simplejson as json
@@ -163,9 +164,12 @@ class JSONSchemaDirective(Directive):
         entry = nodes.entry(morecols=morecols)
         if not isinstance(text, string_types):
             text = str(text)
-        # Regex to replace markdown links for reStructuredText ones
-        text = re.sub(r'\[([^\]]+)\]\(([^\)]+)\)', r'`\1 <\2>`__', text)
-        viewlist = ViewList(text.split('\n'), source=source)
+
+        parser = CommonMarkParser()
+        new_doc = new_document(None)
+        parser.parse(text, new_doc)
+
+        viewlist = ViewList(new_doc.children[:].split('\n'), source=source)
         self.state.nested_parse(viewlist, 0, entry)
         return entry
 
