@@ -164,8 +164,8 @@ class JSONSchemaDirective(Directive):
         new_doc = new_document(None)
         parser.parse(text, new_doc)
 
-        viewlist = ViewList([child.astext() for child in new_doc.children[:]], source=source)
-        self.state.nested_parse(viewlist, 0, entry)
+        for child in new_doc.children[:]:
+            entry += child
         return entry
 
 
