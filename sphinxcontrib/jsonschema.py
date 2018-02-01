@@ -13,7 +13,6 @@ import jsonref
 from jsonpointer import resolve_pointer
 from six import string_types
 from docutils import nodes
-from docutils.statemachine import ViewList
 from docutils.parsers.rst import directives, Directive
 from docutils.utils import new_document
 from recommonmark.parser import CommonMarkParser
