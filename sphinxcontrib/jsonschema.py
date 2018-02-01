@@ -164,6 +164,7 @@ class JSONSchemaDirective(Directive):
         parser.parse(text, new_doc)
 
         for child in new_doc.children[:]:
+            child.source = source
             entry += child
         return entry
 
