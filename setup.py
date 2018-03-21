@@ -13,7 +13,7 @@ requires = [
 
 setup(
     name='sphinxcontrib-jsonschema',
-    version='0.9.3',
+    version='0.9.4',
     url='https://github.com/tk0miya/sphinxcontrib-jsonschema',
     license='BSD',
     author='Takeshi KOMIYA',
