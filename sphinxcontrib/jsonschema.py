@@ -25,11 +25,6 @@ else:
     from collections import OrderedDict
 
 
-class CustomJsonrefLoader(jsonref.JsonLoader):
-    def get_remote_json(self, uri, **kwargs):
-        return {}
-
-
 class JSONSchemaDirective(Directive):
     has_content = True
     required_arguments = 1
@@ -206,12 +201,12 @@ def simplify(obj):
 class JSONSchema(object):
     @classmethod
     def load(cls, reader):
-        obj = jsonref.load(reader, object_pairs_hook=OrderedDict, loader=CustomJsonrefLoader())
+        obj = jsonref.load(reader, object_pairs_hook=OrderedDict)
         return cls.instantiate(None, obj)
 
     @classmethod
     def loads(cls, string):
-        obj = jsonref.loads(string, object_pairs_hook=OrderedDict, loader=CustomJsonrefLoader())
+        obj = jsonref.loads(string, object_pairs_hook=OrderedDict)
         return cls.instantiate(None, obj)
 
     @classmethod
