@@ -8,7 +8,6 @@
 """
 import io
 import os
-import sys
 import jsonref
 from pathlib import Path
 from jsonpointer import resolve_pointer
