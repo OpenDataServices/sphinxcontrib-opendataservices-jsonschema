@@ -10,6 +10,7 @@ import io
 import os
 import sys
 import jsonref
+from pathlib import Path
 from jsonpointer import resolve_pointer
 from six import string_types
 from docutils import nodes
@@ -200,8 +201,8 @@ def simplify(obj):
 
 class JSONSchema(object):
     @classmethod
-    def load(cls, reader):
-        obj = jsonref.load(reader, object_pairs_hook=OrderedDict)
+    def load(cls, reader, base_uri=None):
+        obj = jsonref.load(reader, object_pairs_hook=OrderedDict, base_uri=base_uri)
         return cls.instantiate(None, obj)
 
     @classmethod
@@ -212,7 +213,7 @@ class JSONSchema(object):
     @classmethod
     def loadfromfile(cls, filename):
         with io.open(filename, 'rt', encoding='utf-8') as reader:
-            return cls.load(reader)
+            return cls.load(reader, base_uri=Path(os.path.realpath(filename)).as_uri())
 
     @classmethod
     def instantiate(cls, name, obj, required=False, parent=None, rollup=True):
