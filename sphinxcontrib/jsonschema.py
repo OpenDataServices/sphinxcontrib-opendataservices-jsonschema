@@ -17,13 +17,8 @@ from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 from docutils.utils import new_document
 from recommonmark.parser import CommonMarkParser
-
-if sys.version_info < (2, 7):
-    import simplejson as json
-    from ordereddict import OrderedDict
-else:
-    import json
-    from collections import OrderedDict
+import json
+from collections import OrderedDict
 
 
 class JSONSchemaDirective(Directive):
