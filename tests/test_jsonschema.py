@@ -321,7 +321,7 @@ class TestJsonSchema(unittest.TestCase):
         self.assertEqual(props[5].name, '[3+]/name')
         self.assertEqual(props[5].type, 'string')
 
-    def test_list_object_properties(self):
+    def test_list_object_properties5(self):
         data = """{
             "type": "object",
             "properties": {
@@ -360,6 +360,112 @@ class TestJsonSchema(unittest.TestCase):
         self.assertEqual(props[4].name, 'address/postal_code')
         self.assertEqual(props[4].type, 'string')
         self.assertEqual(props[4].required, False)
+
+    def test_list_object_properties6(self):
+        "An object containing an array of objects."
+
+        data = """{
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "prefecture": "string"
+                        }
+                    }
+                }
+            }
+        }"""
+        schema = JSONSchema.loads(data)
+        props = list(schema)
+        self.assertEqual(len(props), 2)
+
+        self.assertEqual(props[0].name, 'addresses')
+        self.assertEqual(props[0].type, 'array[object]')
+        self.assertEqual(props[0].required, False)
+
+        self.assertEqual(props[1].name, 'addresses/0/prefecture')
+        self.assertEqual(props[1].type, 'string')
+        self.assertEqual(props[1].required, False)
+
+    def test_list_object_properties6b(self):
+        """
+        Same as test_list_object_properties6, except type is array or null.
+
+        """
+        data = """{
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "type": ["array", "null"],
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "prefecture": "string"
+                        }
+                    }
+                }
+            }
+        }"""
+        schema = JSONSchema.loads(data)
+        props = list(schema)
+        self.assertEqual(len(props), 2)
+
+        self.assertEqual(props[0].name, 'addresses')
+        self.assertEqual(props[0].type, 'array[object]')
+        self.assertEqual(props[0].required, False)
+
+        self.assertEqual(props[1].name, 'addresses/0/prefecture')
+        self.assertEqual(props[1].type, 'string')
+        self.assertEqual(props[1].required, False)
+
+    def test_list_object_properties7(self):
+        "An object containing an array of strings."
+
+        data = """{
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }"""
+        schema = JSONSchema.loads(data)
+        props = list(schema)
+        self.assertEqual(len(props), 1)
+
+        self.assertEqual(props[0].name, 'addresses')
+        self.assertEqual(props[0].type, 'array[string]')
+        self.assertEqual(props[0].required, False)
+
+    def test_list_object_properties7b(self):
+        """
+        Same as test_list_object_properties7, except type is array or null.
+
+        """
+        data = """{
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "type": ["array", "null"],
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }"""
+        schema = JSONSchema.loads(data)
+        props = list(schema)
+        self.assertEqual(len(props), 1)
+
+        self.assertEqual(props[0].name, 'addresses')
+        self.assertEqual(props[0].type, 'array[string]')
+        self.assertEqual(props[0].required, False)
 
     def test_union_validations(self):
         data = """{
