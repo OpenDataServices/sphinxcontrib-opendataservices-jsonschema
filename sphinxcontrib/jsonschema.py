@@ -52,9 +52,11 @@ class JSONSchemaDirective(Directive):
         include = self.options.get('include')
         if include:
             self.include = include.split(',')
+            self.include_used = set()
         collapse = self.options.get('collapse')
         if collapse:
             self.collapse = collapse.split(',')
+            self.collapse_used = set()
 
         env = self.state.document.settings.env
         try:
