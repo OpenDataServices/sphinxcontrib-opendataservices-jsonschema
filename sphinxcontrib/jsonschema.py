@@ -27,6 +27,7 @@ class JSONSchemaDirective(Directive):
         'include': directives.unchanged,
         'collapse': directives.unchanged,
         'pointer': directives.unchanged,
+        'externallinks': directives.unchanged,
         'nocrossref': directives.flag,
     }
     # Add a rollup option here
@@ -36,6 +37,7 @@ class JSONSchemaDirective(Directive):
     include = []
     collapse = []
     collapse_used = set()
+    external_links = {}
 
     def run(self):
         include = self.options.get('include')
@@ -44,6 +46,10 @@ class JSONSchemaDirective(Directive):
         collapse = self.options.get('collapse')
         if collapse:
             self.collapse = collapse.split(',')
+
+        external_links = self.options.get('externallinks')
+        if external_links:
+            self.external_links = json.loads(external_links)
 
         env = self.state.document.settings.env
         try:
@@ -125,7 +131,16 @@ class JSONSchemaDirective(Directive):
         row += self.cell(prop.title)
         if prop.description:
             cell = self.cell(prop.description or '', morecols=3)
-            if 'nocrossref' not in self.options:
+            if prop.name in self.external_links:
+                reference = nodes.reference(
+                    '',
+                    '',
+                    nodes.Text(self.external_links[prop.name]['text']),
+                    internal=False,
+                    refuri=self.external_links[prop.name]['url'],
+                    anchorname='')
+                cell += nodes.paragraph('', nodes.Text('\n\nSee '), reference)
+            elif 'nocrossref' not in self.options:
                 ref = None
                 if hasattr(prop.attributes, '__reference__'):
                     ref = prop.attributes.__reference__['$ref']

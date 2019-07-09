@@ -213,7 +213,7 @@ class TestJsonSchema(unittest.TestCase):
         }"""
         schema = JSONSchema.loads(data)
         self.assertEqual(schema.validations,
-                         ['It must be equal to one of the elements ' +
+                         ['It must be equal to one of the elements ' +  # noqa
                           'in ["string", {"type": "object", "maxProperties": 3}, null, 42]'])
 
 # Validation for any instance type
