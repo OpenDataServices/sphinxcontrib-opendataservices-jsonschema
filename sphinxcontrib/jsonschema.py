@@ -504,7 +504,7 @@ class Object(JSONData):
         if isinstance(self.parent, Array):
             return self.parent.full_title
         else:
-            return super().full_title()
+            return super().full_title
 
 
 def setup(app):
