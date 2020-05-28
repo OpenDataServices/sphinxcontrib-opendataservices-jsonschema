@@ -12,12 +12,12 @@ requires = [
 ]
 
 setup(
-    name='sphinxcontrib-jsonschema',
-    version='0.9.3',
-    url='https://github.com/tk0miya/sphinxcontrib-jsonschema',
+    name='sphinxcontrib-opendataservices-jsonschema',
+    version='0.1.0',
+    url='https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema',
     license='BSD',
-    author='Takeshi KOMIYA',
-    author_email='i.tkomiya@gmail.com',
+    author='Takeshi KOMIYA & Open Data Services Co-operative',
+    author_email='code@opendataservices.coop',
     description='Sphinx extension to define data structure using JSON Schema',
     long_description=long_desc,
     zip_safe=False,
