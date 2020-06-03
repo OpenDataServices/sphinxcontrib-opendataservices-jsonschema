@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import sys
 from sphinx_testing import with_app
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest
 
 
 class TestJsonSchema(unittest.TestCase):
