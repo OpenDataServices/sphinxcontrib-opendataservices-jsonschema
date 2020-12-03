@@ -10,7 +10,6 @@ import io
 import os
 import jsonref
 from jsonpointer import resolve_pointer
-from six import string_types
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 from docutils.utils import new_document
@@ -163,7 +162,7 @@ class JSONSchemaDirective(Directive):
 
     def cell(self, text, morecols=0, source=None):
         entry = nodes.entry(morecols=morecols)
-        if not isinstance(text, string_types):
+        if not isinstance(text, str):
             text = str(text)
 
         parser = CommonMarkParser()
@@ -186,7 +185,7 @@ def get_class_for(obj):
         'array': Array,
         'object': Object,
     }
-    if isinstance(obj, string_types):
+    if isinstance(obj, str):
         type = obj
     else:
         type = obj.get('type')
@@ -202,7 +201,7 @@ def simplify(obj):
         type = obj.get('type')
         if type is None:
             return 'null'
-        elif isinstance(type, string_types):
+        elif isinstance(type, str):
             return json.dumps(type)
         else:
             return str(type)
