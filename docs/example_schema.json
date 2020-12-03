@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+        "id": {
+            "type": "string",
+            "title": "Identifier"
+        },
+        "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "A casual name for this person"
+        },
+        "formalname": {
+            "type": "string",
+            "title": "Formal Name",
+            "description": "A formal name for this person"
+        },
+        "address": {
+            "type": "string",
+            "title": "Address"
+        }
+    }
+}
