@@ -11,6 +11,19 @@ Basic Example
 .. jsonschema:: example_schema.json
 
 
+
+With include option
+-------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :include: id,name,age/actual
+
+.. jsonschema:: example_schema.json
+   :include: id,name,age/actual
+
+
 With collapse option
 --------------------
 

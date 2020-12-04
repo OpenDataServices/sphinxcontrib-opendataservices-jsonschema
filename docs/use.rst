@@ -19,7 +19,15 @@ You must pass the path to the JSON Schema file to the widget.
 Option: include
 ---------------
 
-TODO Document, with example of calling.
+You can pass the optional setting `include`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :include: id,name,age/actual
+
+Only the keys listed will be shown.
+
 
 Option: collapse
 ----------------
