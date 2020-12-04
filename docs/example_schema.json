@@ -15,9 +15,43 @@
             "title": "Formal Name",
             "description": "A formal name for this person"
         },
+        "age": {
+            "type": "object",
+            "title": "The person's age",
+            "properties": {
+                "actual": {
+                    "type": "number",
+                    "title": "Actual Age"
+                },
+                "admitted": {
+                    "type": "number",
+                    "title": "Admitted Age"
+                }
+            }
+        },
         "address": {
-            "type": "string",
-            "title": "Address"
+            "$ref": "/definitions/Address",
+            "title": "Address",
+            "description": "Where this person lives"
+        }
+    },
+    "definitions": {
+        "Address": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "title": "Address Details"
+                },
+                "postcode": {
+                    "type": "string",
+                    "title": "Postcode"
+                },
+                "country": {
+                    "type": "string",
+                    "title": "Country"
+                }
+            }
         }
     }
 }
