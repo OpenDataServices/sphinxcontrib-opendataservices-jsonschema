@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Removed Python 2 Support
+- Remove use of `six` library (This was not included in `setup.py` anyway, which was a bug.)
+
 
 ## [0.1.0] - 2020-05-29
 

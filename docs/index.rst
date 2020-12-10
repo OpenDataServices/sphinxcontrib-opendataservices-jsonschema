@@ -10,3 +10,5 @@ This takes a JSON Schema file and displays it as a human readable table.
 
    installation
    use
+   examples
+   dev
