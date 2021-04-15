@@ -12,8 +12,7 @@ import jsonref
 from jsonpointer import resolve_pointer
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
-from docutils.utils import new_document
-from recommonmark.parser import CommonMarkParser
+from myst_parser.main import to_docutils
 
 
 import json
@@ -165,11 +164,7 @@ class JSONSchemaDirective(Directive):
         if not isinstance(text, str):
             text = str(text)
 
-        parser = CommonMarkParser()
-        new_doc = new_document(None)
-        parser.parse(text, new_doc)
-
-        for child in new_doc.children[:]:
+        for child in to_docutils(text).children[:]:
             child.source = source
             entry += child
         return entry

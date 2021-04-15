@@ -8,7 +8,7 @@ requires = [
     'Sphinx>=0.6',
     'jsonref',
     'jsonpointer',
-    'recommonmark',
+    'myst-parser',
 ]
 
 setup(
