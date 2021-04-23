@@ -42,5 +42,12 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=requires,
+    extras_require={
+        'test': [
+            'flake8',
+            'lxml',
+            'pytest',
+        ],
+    },
     namespace_packages=['sphinxcontrib'],
 )
