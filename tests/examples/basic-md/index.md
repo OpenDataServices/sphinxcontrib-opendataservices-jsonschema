@@ -1,0 +1,2 @@
+```{jsonschema} subdir/test.json
+```

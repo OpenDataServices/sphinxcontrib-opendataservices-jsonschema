@@ -45,3 +45,13 @@ def assert_build(app, status, warning, basename, buildername='html', messages=No
 @pytest.mark.sphinx(buildername='html', srcdir=path('basic'), freshenv=True)
 def test_basic(app, status, warning):
     assert_build(app, status, warning, 'basic')
+
+
+@pytest.mark.sphinx(buildername='gettext', srcdir=path('basic'), freshenv=True)
+def test_basic_gettext(app, status, warning):
+    assert_build(app, status, warning, 'basic', buildername='gettext')
+
+
+@pytest.mark.sphinx(buildername='gettext', srcdir=path('basic-md'), freshenv=True)
+def test_basic_gettext_myst(app, status, warning):
+    assert_build(app, status, warning, 'basic-md', buildername='gettext')
