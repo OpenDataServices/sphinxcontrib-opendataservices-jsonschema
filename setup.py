@@ -38,7 +38,7 @@ setup(
         'docutils',
         'jsonref',
         'jsonpointer',
-        'recommonmark',
+        'myst-parser',
     ],
     namespace_packages=['sphinxcontrib'],
 )
