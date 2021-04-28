@@ -44,7 +44,6 @@ setup(
         'test': [
             'flake8',
             'lxml',
-            'myst-parser',
             'pytest',
         ],
     },
