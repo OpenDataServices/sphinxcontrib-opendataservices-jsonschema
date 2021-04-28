@@ -6,7 +6,7 @@ long_desc = open('README.rst').read()
 
 setup(
     name='sphinxcontrib-opendataservices-jsonschema',
-    version='0.1.0',
+    version='0.2.0',
     url='https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema',
     license='BSD',
     author='Takeshi KOMIYA & Open Data Services Co-operative',
