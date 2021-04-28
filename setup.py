@@ -4,13 +4,6 @@ from setuptools import setup, find_packages
 
 long_desc = open('README.rst').read()
 
-requires = [
-    'Sphinx>=0.6',
-    'jsonref',
-    'jsonpointer',
-    'recommonmark',
-]
-
 setup(
     name='sphinxcontrib-opendataservices-jsonschema',
     version='0.1.0',
@@ -41,7 +34,12 @@ setup(
     platforms='any',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=requires,
+    install_requires=[
+        'docutils',
+        'jsonref',
+        'jsonpointer',
+        'myst-parser',
+    ],
     extras_require={
         'test': [
             'flake8',
