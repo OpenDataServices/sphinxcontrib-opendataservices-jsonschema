@@ -40,5 +40,13 @@ setup(
         'jsonpointer',
         'myst-parser',
     ],
+    extras_require={
+        'test': [
+            'flake8',
+            'lxml',
+            'myst-parser',
+            'pytest',
+        ],
+    },
     namespace_packages=['sphinxcontrib'],
 )

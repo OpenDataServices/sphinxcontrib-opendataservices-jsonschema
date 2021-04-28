@@ -1,0 +1,20 @@
+{
+  "description": "Data for people",
+  "type" : "object",
+  "properties" : {
+     "name" : "string",
+     "age" : {
+         "type" : "integer",
+         "maximum" : "80",
+         "minimum" : "20"
+     },
+     "mailAddress" : "string",
+     "otherContacts" : {
+        "type" : "array",
+        "default" : "['abc', 'def', 'ghi']",
+        "items" : {
+           "type" : "string"
+        }
+     }
+  }
+}

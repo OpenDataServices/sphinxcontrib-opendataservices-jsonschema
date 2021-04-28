@@ -20,6 +20,5 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}-${{ matrix.python-version }}
         restore-keys: |
           ${{ runner.os }}-pip-
-    - run: pip install -e .
-    - run: pip install pytest sphinx-testing
+    - run: pip install -e .[test]
     - run: py.test
