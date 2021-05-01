@@ -32,6 +32,7 @@ class JSONSchemaDirective(Directive):
         'collapse': directives.unchanged,
         'pointer': directives.unchanged,
         'nocrossref': directives.flag,
+        'addtargets': directives.flag,
     }
     # Add a rollup option here
 
@@ -129,8 +130,10 @@ class JSONSchemaDirective(Directive):
             self.arguments[0].split('/')[-1],
             self.options.get('pointer', ''),
             prop.name)
-        cell = nodes.entry('', nodes.target(ids=[anchor], names=[anchor]), nodes.literal('', nodes.Text(prop.name)),
-                           morecols=1)
+        target = nodes.target(ids=[anchor], names=[anchor])
+        if 'addtargets' in self.options:
+            self.state.document.note_explicit_target(target)
+        cell = nodes.entry('', target, nodes.literal('', nodes.Text(prop.name)), morecols=1)
         row += cell
         row += self.cell(prop.type)
         row += self.cell(prop.format or '')
