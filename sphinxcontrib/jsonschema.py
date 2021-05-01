@@ -130,7 +130,7 @@ class JSONSchemaDirective(Directive):
             self.arguments[0].split('/')[-1],
             self.options.get('pointer', ''),
             prop.name)
-        target = nodes.target(ids=[anchor], names=[anchor])
+        target = nodes.target(ids=[anchor], names=[anchor.lower()])
         if 'addtargets' in self.options:
             self.state.document.note_explicit_target(target)
         cell = nodes.entry('', target, nodes.literal('', nodes.Text(prop.name)), morecols=1)
