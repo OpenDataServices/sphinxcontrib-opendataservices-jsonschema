@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.2.0] - 2021-05-28
+## [0.3.0] - 2021-05-12
+
+### Added
+
+- Add `addtargets` option to `jsonschema` directive https://github.com/OpenDataServices/lib-cove-web/pull/96
+
+## [0.2.0] - 2021-04-28
 
 ### Changed
 
