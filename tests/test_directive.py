@@ -52,6 +52,11 @@ def test_basic_gettext(app, status, warning):
     assert_build(app, status, warning, 'basic', buildername='gettext')
 
 
+@pytest.mark.sphinx(buildername='html', srcdir=path('basic-externallinks'), freshenv=True)
+def test_basic_externallinks(app, status, warning):
+    assert_build(app, status, warning, 'basic-externallinks')
+
+
 @pytest.mark.sphinx(buildername='gettext', srcdir=path('basic-md'), freshenv=True)
 def test_basic_gettext_myst(app, status, warning):
     assert_build(app, status, warning, 'basic-md', buildername='gettext')

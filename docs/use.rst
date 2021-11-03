@@ -71,3 +71,17 @@ You can pass the optional flag `nocrossref`.
 By default, if an item has a `$ref` property then some text will be added to the Description with a link to a HTML anchor.
 
 If you don't want this, pass this flag to disable this.
+
+Option: externallinks
+---------------------
+
+You can pass a dictionary of dictionaries to this.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :externallinks: {"formalname":{"url":"https://en.wikipedia.org/wiki/Butler","text":"A guide on how to use formal names"}}
+
+
+For every property included, a extra link will be included with the URL and text specified in the description section.
+

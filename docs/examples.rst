@@ -59,3 +59,16 @@ With nocrossref flag
 .. jsonschema:: example_schema.json
    :nocrossref:
 
+With externallinks option
+-------------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :include: formalname
+       :externallinks: {"formalname":{"url":"https://en.wikipedia.org/wiki/Butler","text":"A guide on how to use formal names"}}
+
+.. jsonschema:: example_schema.json
+   :include: formalname
+   :externallinks: {"formalname":{"url":"https://en.wikipedia.org/wiki/Butler","text":"A guide on how to use formal names"}}
+

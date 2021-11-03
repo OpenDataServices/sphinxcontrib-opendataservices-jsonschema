@@ -1,0 +1,11 @@
+{
+  "description": "Data for people",
+  "type" : "object",
+  "properties" : {
+     "name" : {
+       "type": "string",
+       "title": "Name",
+       "description": "The Things Name"
+     }
+  }
+}
