@@ -72,3 +72,13 @@ With externallinks option
    :include: formalname
    :externallinks: {"formalname":{"url":"https://en.wikipedia.org/wiki/Butler","text":"A guide on how to use formal names"}}
 
+With allowexternalrefs option
+-----------------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema_with_external_refs.json
+       :allowexternalrefs:
+
+.. jsonschema:: example_schema_with_external_refs.json
+   :allowexternalrefs:

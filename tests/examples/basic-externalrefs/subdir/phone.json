@@ -1,0 +1,19 @@
+{
+  "id": "phone.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Identifier"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type of phone",
+      "enum": [
+        "android",
+        "iphone",
+        "windows"
+      ]
+    }
+  }
+}

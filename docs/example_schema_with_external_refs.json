@@ -1,0 +1,20 @@
+{
+    "id": "example_schema_with_external_refs.json",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+        "id": {
+            "type": "string",
+            "title": "Identifier"
+        },
+        "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name for this person"
+        },
+        "address": {
+            "$ref": "example_components.json#/definitions/Address",
+            "title": "Address",
+            "description": "Where this person lives"
+        }
+    }
+}

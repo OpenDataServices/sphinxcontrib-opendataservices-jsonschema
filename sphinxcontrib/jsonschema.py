@@ -13,7 +13,7 @@ from jsonpointer import resolve_pointer
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 from myst_parser.main import to_docutils
-
+from pathlib import Path
 
 import json
 from collections import OrderedDict
@@ -34,6 +34,7 @@ class JSONSchemaDirective(Directive):
         'nocrossref': directives.flag,
         'addtargets': directives.flag,
         'externallinks': directives.unchanged,
+        'allowexternalrefs': directives.flag,
     }
     # Add a rollup option here
 
@@ -72,9 +73,12 @@ class JSONSchemaDirective(Directive):
                                        self.arguments[0])
                 env.note_dependency(relpath)
 
-                schema = JSONSchema.loadfromfile(abspath)
+                schema = JSONSchema.loadfromfile(abspath, allow_external_refs=('allowexternalrefs' in self.options))
             else:
-                schema = JSONSchema.loadfromfile(''.join(self.content))
+                schema = JSONSchema.loadfromfile(
+                    ''.join(self.content),
+                    allow_external_refs=('allowexternalrefs' in self.options)
+                )
         except ValueError as exc:
             raise self.error('Failed to parse JSON Schema: %s' % exc)
 
@@ -224,8 +228,11 @@ def simplify(obj):
 
 class JSONSchema(object):
     @classmethod
-    def load(cls, reader):
-        obj = jsonref.load(reader, object_pairs_hook=OrderedDict, loader=CustomJsonrefLoader())
+    def load(cls, reader, allow_external_refs=False, base_uri=None):
+        args = {}
+        if not allow_external_refs:
+            args['loader'] = CustomJsonrefLoader()
+        obj = jsonref.load(reader, object_pairs_hook=OrderedDict, base_uri=base_uri, **args)
         return cls.instantiate(None, obj)
 
     @classmethod
@@ -234,9 +241,13 @@ class JSONSchema(object):
         return cls.instantiate(None, obj)
 
     @classmethod
-    def loadfromfile(cls, filename):
+    def loadfromfile(cls, filename, allow_external_refs=False):
         with io.open(filename, 'rt', encoding='utf-8') as reader:
-            return cls.load(reader)
+            args = {}
+            if allow_external_refs:
+                args['allow_external_refs'] = True
+                args['base_uri'] = Path(os.path.realpath(filename)).as_uri()
+            return cls.load(reader, **args)
 
     @classmethod
     def instantiate(cls, name, obj, required=False, parent=None, rollup=True):
