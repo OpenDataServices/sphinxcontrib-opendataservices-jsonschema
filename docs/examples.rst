@@ -1,6 +1,16 @@
 Examples
 ========
 
+
+Schema files for these examples
+-------------------------------
+
+You can see the schema files used for these examples:
+
+* `example_schema.json <example_schema.json>`_
+* `example_schema_with_external_refs.json <example_schema_with_external_refs.json>`_
+* `example_components.json <example_components.json>`_
+
 Basic Example
 -------------
 
