@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.0] - 2021-11-04
+
 ### Added
 
 - Add `externallinks` option to `jsonschema` directive https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema/issues/24
