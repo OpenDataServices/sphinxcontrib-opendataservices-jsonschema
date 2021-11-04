@@ -85,3 +85,17 @@ You can pass a dictionary of dictionaries to this.
 
 For every property included, a extra link will be included with the URL and text specified in the description section.
 
+
+Option: allowexternalrefs
+-------------------------
+
+You can pass the optional flag `allowexternalrefs`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema_with_external_refs.json
+       :allowexternalrefs:
+
+If passed, you can use `$ref` to load remote files and they will be loaded.
+
+If not passed, any remote references will silently be ignored.

@@ -1,0 +1,27 @@
+{
+  "id": "components.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "pet": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Identifier"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "A casual name for this pet"
+        },
+        "type": {
+          "type": "string",
+          "title": "Type of pet",
+          "enum": [
+            "cat",
+            "dog"
+          ]
+        }
+      }
+    }
+  }
+}

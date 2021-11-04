@@ -1,0 +1,23 @@
+{
+  "id": "example_components.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Address Details"
+        },
+        "postcode": {
+          "type": "string",
+          "title": "Postcode"
+        },
+        "country": {
+          "type": "string",
+          "title": "Country"
+        }
+      }
+    }
+  }
+}
