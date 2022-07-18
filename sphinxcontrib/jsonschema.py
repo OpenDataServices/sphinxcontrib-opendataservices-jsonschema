@@ -228,7 +228,7 @@ def simplify(obj):
 
 class JSONSchema(object):
     @classmethod
-    def load(cls, reader, allow_external_refs=False, base_uri=None):
+    def load(cls, reader, allow_external_refs=False, base_uri=""):
         args = {}
         if not allow_external_refs:
             args['loader'] = CustomJsonrefLoader()
