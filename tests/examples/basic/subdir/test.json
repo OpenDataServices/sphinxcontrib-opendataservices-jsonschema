@@ -4,6 +4,7 @@
   "properties" : {
      "name" : "string",
      "age" : {
+        "description": "description with [a link](http://example.org)",
          "type" : "integer",
          "maximum" : "80",
          "minimum" : "20"

@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Set default `base_uri` correctly, fixes `jsonref.JsonRefError: Unresolvable JSON pointer`
 
+### Added
+
+- Add myst-parser 0.18.0 support
+
 ## [0.4.0] - 2021-11-04
 
 ### Added

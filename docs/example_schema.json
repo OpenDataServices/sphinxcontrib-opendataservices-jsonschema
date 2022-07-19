@@ -9,7 +9,7 @@
         "name": {
             "type": "string",
             "title": "Name",
-            "description": "A casual name for this person"
+            "description": "A casual name for this person. [A link](http://example.org)."
         },
         "formalname": {
             "type": "string",

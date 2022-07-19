@@ -12,11 +12,26 @@ import jsonref
 from jsonpointer import resolve_pointer
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
-from myst_parser.main import to_docutils
 from pathlib import Path
 
 import json
 from collections import OrderedDict
+
+
+try:
+    from myst_parser.main import to_docutils
+except ModuleNotFoundError:
+    from myst_parser.config.main import MdParserConfig
+    from myst_parser.mdit_to_docutils.base import make_document
+    from myst_parser.mdit_to_docutils.sphinx_ import SphinxRenderer
+    from myst_parser.parsers.mdit import create_md_parser
+
+    # to_docutils was removed in myst-parser>=0.18.
+    def to_docutils(text):
+        # Code is similar to MystParser.parse and myst_parser.parsers.docutils_.Parser.parse.
+        parser = create_md_parser(MdParserConfig(), SphinxRenderer)
+        parser.options["document"] = make_document()
+        return parser.render(text)
 
 
 class CustomJsonrefLoader(jsonref.JsonLoader):
