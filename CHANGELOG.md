@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Set default `base_uri` correctly, fixes `jsonref.JsonRefError: Unresolvable JSON pointer`
+- Arrays of string are now correctly marked as Required, if that's what the schema indicates
 
 ### Added
 

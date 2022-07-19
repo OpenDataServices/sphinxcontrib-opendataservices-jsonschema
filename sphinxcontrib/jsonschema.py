@@ -436,7 +436,7 @@ class Array(JSONData):
             item = JSONSchema.instantiate(self.name + '/0', self.items, parent=self)
 
             # array object itself
-            array = Array(self.name, self.attributes, parent=self.parent)
+            array = Array(self.name, self.attributes, required=self.required, parent=self.parent)
             array.type = 'array[%s]' % item.get_typename()
             yield array
 
