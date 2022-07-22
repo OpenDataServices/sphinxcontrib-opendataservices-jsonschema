@@ -6,7 +6,7 @@ long_desc = open('README.rst').read()
 
 setup(
     name='sphinxcontrib-opendataservices-jsonschema',
-    version='0.4.0',
+    version='0.5.0',
     url='https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema',
     license='BSD',
     author='Takeshi KOMIYA & Open Data Services Co-operative',
@@ -23,11 +23,11 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Topic :: Documentation',
         'Topic :: Documentation :: Sphinx',
     ],

@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2022-07-20
+
+### Fixed
+
+- Set default `base_uri` correctly, fixes `jsonref.JsonRefError: Unresolvable JSON pointer`
+- Arrays of string are now correctly marked as Required, if that's what the schema indicates
+
+### Added
+
+- Add myst-parser 0.18.0 support
+
 ## [0.4.0] - 2021-11-04
 
 ### Added
