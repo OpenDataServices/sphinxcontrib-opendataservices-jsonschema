@@ -34,9 +34,8 @@ except ModuleNotFoundError:
         return parser.render(text)
 
 
-class CustomJsonrefLoader(jsonref.JsonLoader):
-    def get_remote_json(self, uri, **kwargs):
-        return {}
+def custom_jsonref_jsonloader(uri, **kwargs):
+    return {}
 
 
 class JSONSchemaDirective(Directive):
@@ -246,13 +245,13 @@ class JSONSchema(object):
     def load(cls, reader, allow_external_refs=False, base_uri=""):
         args = {}
         if not allow_external_refs:
-            args['loader'] = CustomJsonrefLoader()
+            args['loader'] = custom_jsonref_jsonloader
         obj = jsonref.load(reader, object_pairs_hook=OrderedDict, base_uri=base_uri, **args)
         return cls.instantiate(None, obj)
 
     @classmethod
     def loads(cls, string):
-        obj = jsonref.loads(string, object_pairs_hook=OrderedDict, loader=CustomJsonrefLoader())
+        obj = jsonref.loads(string, object_pairs_hook=OrderedDict, loader=custom_jsonref_jsonloader)
         return cls.instantiate(None, obj)
 
     @classmethod
