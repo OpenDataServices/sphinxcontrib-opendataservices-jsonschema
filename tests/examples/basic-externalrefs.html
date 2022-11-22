@@ -1,10 +1,13 @@
-<div class="documentwrapper">
+
+      <div class="documentwrapper">
         <div class="bodywrapper">
-          
+
 
           <div class="body" role="main">
-            
-  <table class="docutils align-default">
+
+  <p>Test with and without components - allow external refs!</p>
+<p>We want to test the external schema is put in correctly.</p>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head" colspan="1"><p>Title</p></th>
 <th class="head" colspan="1"><p>Description</p></th>
@@ -14,28 +17,28 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,name"><span class="pre">name</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,name"><span class="pre">name</span></code></td>
 <td colspan="1"><p>string</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
 </tr>
 <tr class="row-odd"><td colspan="1"><p>None</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,pet"><span class="pre">pet</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,pet"><span class="pre">pet</span></code></td>
 <td colspan="1"><p>object</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
 </tr>
 <tr class="row-odd"><td colspan="1"><p>None</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,pet/id"><span class="pre">pet/id</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,pet/id"><span class="pre">pet/id</span></code></td>
 <td colspan="1"><p>string</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
 </tr>
 <tr class="row-odd"><td colspan="1"><p>Identifier</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,pet/name"><span class="pre">pet/name</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,pet/name"><span class="pre">pet/name</span></code></td>
 <td colspan="1"><p>string</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
@@ -43,28 +46,28 @@
 <tr class="row-odd"><td colspan="1"><p>Name</p></td>
 <td colspan="4"><p>A casual name for this pet</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,pet/type"><span class="pre">pet/type</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,pet/type"><span class="pre">pet/type</span></code></td>
 <td colspan="1"><p>string</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
 </tr>
 <tr class="row-odd"><td colspan="1"><p>Type of pet</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,phone"><span class="pre">phone</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,phone"><span class="pre">phone</span></code></td>
 <td colspan="1"><p>object</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
 </tr>
 <tr class="row-odd"><td colspan="1"><p>None</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,phone/id"><span class="pre">phone/id</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,phone/id"><span class="pre">phone/id</span></code></td>
 <td colspan="1"><p>string</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
 </tr>
 <tr class="row-odd"><td colspan="1"><p>Identifier</p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test.json,,phone/type"><span class="pre">phone/type</span></code></td>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-with-and-without-compontent.json,,phone/type"><span class="pre">phone/type</span></code></td>
 <td colspan="1"><p>string</p></td>
 <td colspan="1"></td>
 <td colspan="1"></td>
@@ -73,10 +76,85 @@
 </tr>
 </tbody>
 </table>
+<p>Test with and without components - do NOT allow external refs!</p>
+<p>We just want to make sure it does not crash, and the output is as sensible as possible.</p>
+<p>We can not test this example.</p>
+<p>If external refs are not allowed {} is put in the de-referenced schema.
+Then we get a crash:  can not find /definitions/pet in {}</p>
+<p>See <a class="reference external" href="https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema/issues/44">https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema/issues/44</a></p>
+<p>Test without components - allow external refs!</p>
+<p>We want to test the external schema is put in correctly.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="1"><p>Title</p></th>
+<th class="head" colspan="1"><p>Description</p></th>
+<th class="head" colspan="1"><p>Type</p></th>
+<th class="head" colspan="1"><p>Format</p></th>
+<th class="head" colspan="1"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-without-compontent.json,,name"><span class="pre">name</span></code></td>
+<td colspan="1"><p>string</p></td>
+<td colspan="1"></td>
+<td colspan="1"></td>
+</tr>
+<tr class="row-odd"><td colspan="1"><p>None</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-without-compontent.json,,phone"><span class="pre">phone</span></code></td>
+<td colspan="1"><p>object</p></td>
+<td colspan="1"></td>
+<td colspan="1"></td>
+</tr>
+<tr class="row-odd"><td colspan="1"><p>None</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-without-compontent.json,,phone/id"><span class="pre">phone/id</span></code></td>
+<td colspan="1"><p>string</p></td>
+<td colspan="1"></td>
+<td colspan="1"></td>
+</tr>
+<tr class="row-odd"><td colspan="1"><p>Identifier</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-without-compontent.json,,phone/type"><span class="pre">phone/type</span></code></td>
+<td colspan="1"><p>string</p></td>
+<td colspan="1"></td>
+<td colspan="1"></td>
+</tr>
+<tr class="row-odd"><td colspan="1"><p>Type of phone</p></td>
+</tr>
+</tbody>
+</table>
+<p>Test without components - do NOT allow external refs!</p>
+<p>We just want to make sure it does not crash, and the output is as sensible as possible.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="1"><p>Title</p></th>
+<th class="head" colspan="1"><p>Description</p></th>
+<th class="head" colspan="1"><p>Type</p></th>
+<th class="head" colspan="1"><p>Format</p></th>
+<th class="head" colspan="1"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-without-compontent.json,,name"><span class="pre">name</span></code></td>
+<td colspan="1"><p>string</p></td>
+<td colspan="1"></td>
+<td colspan="1"></td>
+</tr>
+<tr class="row-odd"><td colspan="1"><p>None</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><code class="docutils literal notranslate" id="test-without-compontent.json,,phone"><span class="pre">phone</span></code></td>
+<td colspan="1"><p>object</p></td>
+<td colspan="1"></td>
+<td colspan="1"></td>
+</tr>
+<tr class="row-odd"><td colspan="1"><p>None</p></td>
+</tr>
+</tbody>
+</table>
 
 
           </div>
-          
+
         </div>
       </div>
-      
