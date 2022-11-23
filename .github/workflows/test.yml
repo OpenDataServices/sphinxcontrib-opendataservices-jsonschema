@@ -6,10 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '3.6', '3.7', '3.8', '3.9', '3.10']
+        python-version: [ '3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
         myst-parser-version: [ '<0.18.0', '>=0.18.0' ]
+        jsonref-version: [">1"]
         exclude:
           - python-version: '3.6'
+            myst-parser-version: '>=0.18.0'
+        include:
+          # jsonref 1.0 has a backwards incompatible change - make sure we test just once with an older version of jsonref
+          - python-version: '3.11'
+            jsonref-version: "==0.3"
             myst-parser-version: '>=0.18.0'
     steps:
     - uses: actions/checkout@v2
@@ -25,5 +31,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
     - run: pip install -e .[test]
+    - run: pip install 'jsonref${{ matrix.jsonref-version }}'
     - run: pip install "myst-parser${{ matrix.myst-parser-version }}"
     - run: py.test

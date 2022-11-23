@@ -24,7 +24,8 @@ def assert_build(app, status, warning, basename, buildername='html', messages=No
             actual = lxml.html.tostring(element).decode()
             # This is required for python 3.7 and myst-parser<0.18.0 support
             if sys.version_info < (3, 8) or list(map(int, myst_parser.__version__.split("."))) < [0, 18, 0]:
-                actual = re.sub(r'<colgroup>.*</colgroup>', '', actual, flags=re.DOTALL)
+                # regex must be non-greedy, otherwise you can't put more than one table on a page
+                actual = re.sub(r'<colgroup>.*?</colgroup>', '', actual, flags=re.DOTALL)
 
         with open(path(f'{basename}.html'), encoding='utf-8') as f:
             expected = f.read()

@@ -1,0 +1,11 @@
+{
+  "id": "test.json",
+  "description": "Data for people",
+  "type" : "object",
+  "properties" : {
+     "name" : "string",
+    "phone": {
+      "$ref": "phone.json"
+    }
+  }
+}
