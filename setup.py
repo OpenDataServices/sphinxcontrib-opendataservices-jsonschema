@@ -42,7 +42,7 @@ setup(
     ],
     extras_require={
         'test': [
-            'flake8',
+            'flake8<6',
             'lxml',
             'pytest',
         ],
