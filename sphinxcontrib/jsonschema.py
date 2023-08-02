@@ -185,8 +185,8 @@ class JSONSchemaDirective(Directive):
                 if ref:
                     # just use the name at the end of the ref
                     ref = ref.split('/')[-1]
-                    reference = nodes.reference('', '', nodes.Text(ref), internal=False, refuri='#' + ref.lower(),
-                                                anchorname='')
+                    reference = nodes.reference('', '', nodes.Text(ref), internal=False,
+                                                refuri='#' + nodes.make_id(ref), anchorname='')
                     cell += nodes.paragraph('', nodes.Text('\n\nSee '), reference)
                 if prop.deprecated:
                     cell += nodes.paragraph('', nodes.Text('This property was deprecated in version {}'

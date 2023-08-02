@@ -9,7 +9,11 @@
          "maximum" : "80",
          "minimum" : "20"
      },
-     "mailAddress" : "string",
+     "address": {
+       "$ref": "/definitions/Address_definition",
+       "title": "Address",
+       "description": "Where this person lives. NOTE: The underscore should become a dash in the anchor name."
+     },
      "otherContacts" : {
         "type" : "array",
         "default" : "['abc', 'def', 'ghi']",
@@ -18,5 +22,24 @@
         }
      }
   },
- "required": ["otherContacts"]
+ "required": ["otherContacts"],
+ "definitions": {
+   "Address_definition": {
+     "type": "object",
+     "properties": {
+       "address": {
+         "type": "string",
+         "title": "Address Details"
+       },
+       "postcode": {
+         "type": "string",
+         "title": "Postcode"
+       },
+       "country": {
+         "type": "string",
+         "title": "Country"
+       }
+     }
+   }
+  }
 }
