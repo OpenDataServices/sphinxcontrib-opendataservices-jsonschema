@@ -1,8 +1,6 @@
 import re
-import sys
 
 import lxml.html
-import myst_parser
 import pytest
 
 from tests import path
@@ -22,10 +20,10 @@ def assert_build(app, status, warning, basename, buildername='html', messages=No
         with open(path(basename, '_build', buildername, 'index.html'), encoding='utf-8') as f:
             element = lxml.html.fromstring(f.read()).xpath('//div[@class="documentwrapper"]')[0]
             actual = lxml.html.tostring(element).decode()
-            # This is required for python 3.7 and myst-parser<0.18.0 support
-            if sys.version_info < (3, 8) or list(map(int, myst_parser.__version__.split("."))) < [0, 18, 0]:
-                # regex must be non-greedy, otherwise you can't put more than one table on a page
-                actual = re.sub(r'<colgroup>.*?</colgroup>', '', actual, flags=re.DOTALL)
+            # Some versions of myst-parser have colgroup, some don't.
+            # Remove from actual to get consistent tests across all versions.
+            # regex must be non-greedy, otherwise you can't put more than one table on a page
+            actual = re.sub(r'<colgroup>.*?</colgroup>', '', actual, flags=re.DOTALL)
 
         with open(path(f'{basename}.html'), encoding='utf-8') as f:
             expected = f.read()

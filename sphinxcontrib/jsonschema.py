@@ -23,13 +23,13 @@ try:
 except ModuleNotFoundError:
     from myst_parser.config.main import MdParserConfig
     from myst_parser.mdit_to_docutils.base import make_document
-    from myst_parser.mdit_to_docutils.sphinx_ import SphinxRenderer
+    from myst_parser.mdit_to_docutils.sphinx_ import DocutilsRenderer
     from myst_parser.parsers.mdit import create_md_parser
 
     # to_docutils was removed in myst-parser>=0.18.
     def to_docutils(text):
         # Code is similar to MystParser.parse and myst_parser.parsers.docutils_.Parser.parse.
-        parser = create_md_parser(MdParserConfig(), SphinxRenderer)
+        parser = create_md_parser(MdParserConfig(), DocutilsRenderer)
         parser.options["document"] = make_document()
         return parser.render(text)
 
