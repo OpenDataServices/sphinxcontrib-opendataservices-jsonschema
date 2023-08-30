@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Add myst-parser 0.19.0, 1 and 2 support (Changes API in myst-parser we use)
+- Removed Python 3.7 and below support
+
 ## [0.5.1] - 2022-12-01
 
 ### Fixed
