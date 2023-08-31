@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Replace '_' with '-' in HTML anchors https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema/pull/51
 - Add myst-parser 0.19.0, 1 and 2 support (Changes API in myst-parser we use)
 - Removed Python 3.7 and below support
 
