@@ -44,6 +44,8 @@ setup(
             'flake8<6',
             'lxml',
             'pytest',
+            'sphinx',
+            'sphinx-rtd-theme',
         ],
     },
     namespace_packages=['sphinxcontrib'],

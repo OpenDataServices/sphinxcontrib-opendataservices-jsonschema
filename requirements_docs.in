@@ -1,0 +1,3 @@
+# After compiling, this will make an absolute path
+# You'll have to edit it back to a relative one by hand
+-e .[test]
