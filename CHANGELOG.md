@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.1] - 2023-10-18
+
 ### Fixed
 
 - Output row for an array even if items property is missing https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema/issues/56
