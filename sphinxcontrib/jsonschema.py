@@ -430,7 +430,9 @@ class Array(JSONData):
 
     def __iter__(self):
         if self.items is None:
-            return
+            # array object itself
+            array = Array(self.name, self.attributes, required=self.required, parent=self.parent)
+            yield array
         elif isinstance(self.items, dict):
             item = JSONSchema.instantiate(self.name + '/0', self.items, parent=self)
 
