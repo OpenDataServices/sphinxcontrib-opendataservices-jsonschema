@@ -20,6 +20,10 @@
         "items" : {
            "type" : "string"
         }
+     },
+     "otherNames" : {
+        "meta_description": "Test an array that doesn't have items",
+        "type" : "array"
      }
   },
  "required": ["otherContacts"],
