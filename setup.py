@@ -38,11 +38,14 @@ setup(
         'jsonref',
         'jsonpointer',
         'myst-parser',
+        'referencing',
+        'jscc',
     ],
     extras_require={
         'test': [
             'flake8<6',
             'lxml',
+            'defusedxml',  # Not directly used, but require because of issue with sphinx.testing.fixtures plugin
             'pytest',
         ],
     },

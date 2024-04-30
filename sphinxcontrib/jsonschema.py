@@ -13,6 +13,11 @@ from jsonpointer import resolve_pointer
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 from pathlib import Path
+from urllib import parse as urlparse
+from referencing import Registry, Resource
+from referencing.jsonschema import DRAFT202012
+from jscc.schema import is_json_schema
+from jscc.testing.filesystem import walk_json_data
 
 import json
 from collections import OrderedDict
@@ -38,6 +43,27 @@ def custom_jsonref_jsonloader(uri, **kwargs):
     return {}
 
 
+def build_custom_schema_loader(schema_path):
+    """
+    Builds a callable which handles a URN if provided (e.g. resolves part
+    before hash in 'urn:components#/$defs/UnspecifiedRecord' to components.json
+    in schema_path dircetory), else calls default JSON loader.
+    """
+    schemas = []
+    for _, _, _, data in walk_json_data(top=schema_path):
+        if is_json_schema(data):
+            schemas.append((data.get("$id"), Resource(contents=data, specification=DRAFT202012)))
+    registry = Registry().with_resources(schemas)
+
+    def custom_loader(uri, **kwargs):
+        scheme = urlparse.urlsplit(uri).scheme
+        if scheme == "urn":
+            return registry.contents(uri.split("#")[0])
+        else:
+            return jsonref.jsonloader(uri, **kwargs)
+    return custom_loader
+
+
 class JSONSchemaDirective(Directive):
     has_content = True
     required_arguments = 1
@@ -49,6 +75,7 @@ class JSONSchemaDirective(Directive):
         'addtargets': directives.flag,
         'externallinks': directives.unchanged,
         'allowexternalrefs': directives.flag,
+        'allowurnrefs': directives.flag,
     }
     # Add a rollup option here
 
@@ -87,11 +114,18 @@ class JSONSchemaDirective(Directive):
                                        self.arguments[0])
                 env.note_dependency(relpath)
 
-                schema = JSONSchema.loadfromfile(abspath, allow_external_refs=('allowexternalrefs' in self.options))
+                schema = JSONSchema.loadfromfile(
+                    abspath,
+                    allow_external_refs=('allowexternalrefs' in self.options),
+                    loader=(build_custom_schema_loader(abspath.rsplit("/", 1)[0])
+                            if 'allowurnrefs' in self.options else None)
+                )
             else:
                 schema = JSONSchema.loadfromfile(
                     ''.join(self.content),
-                    allow_external_refs=('allowexternalrefs' in self.options)
+                    allow_external_refs=('allowexternalrefs' in self.options),
+                    loader=(build_custom_schema_loader(abspath.rsplit("/", 1)[0])
+                            if 'allowurnrefs' in self.options else None)
                 )
         except ValueError as exc:
             raise self.error('Failed to parse JSON Schema: %s' % exc)
@@ -242,10 +276,12 @@ def simplify(obj):
 
 class JSONSchema(object):
     @classmethod
-    def load(cls, reader, allow_external_refs=False, base_uri=""):
+    def load(cls, reader, allow_external_refs=False, base_uri="", loader=None):
         args = {}
         if not allow_external_refs:
             args['loader'] = custom_jsonref_jsonloader
+        if loader:
+            args['loader'] = loader
         obj = jsonref.load(reader, object_pairs_hook=OrderedDict, base_uri=base_uri, **args)
         return cls.instantiate(None, obj)
 
@@ -255,12 +291,14 @@ class JSONSchema(object):
         return cls.instantiate(None, obj)
 
     @classmethod
-    def loadfromfile(cls, filename, allow_external_refs=False):
+    def loadfromfile(cls, filename, allow_external_refs=False, loader=None):
         with io.open(filename, 'rt', encoding='utf-8') as reader:
             args = {}
             if allow_external_refs:
                 args['allow_external_refs'] = True
                 args['base_uri'] = Path(os.path.realpath(filename)).as_uri()
+                if loader:
+                    args['loader'] = loader
             return cls.load(reader, **args)
 
     @classmethod
