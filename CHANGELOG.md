@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.7.0] - 2024-05-03
+
+### Changed
+
+- Add custom loader to resolve urn: references schema files
+
+### Fixed
+
+- Pin flake8<6 for linting
+- Require lxml and defusedxml for tests
+- myst-parser-version<0.18.0 removed from test matrix, as too old and massive dependency issues
+
 ## [0.6.1] - 2023-10-18
 
 ### Fixed
