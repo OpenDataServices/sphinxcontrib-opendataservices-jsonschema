@@ -90,11 +90,11 @@ class JSONSchemaDirective(Directive):
     def run(self):
         include = self.options.get('include')
         if include:
-            self.include = include.split(',')
+            self.include = [path.split('/') for path in include.split(',')]
             self.include_used = set()
         collapse = self.options.get('collapse')
         if collapse:
-            self.collapse = collapse.split(',')
+            self.collapse = [path.split('/') for path in collapse.split(',')]
             self.collapse_used = set()
 
         external_links = self.options.get('externallinks')
@@ -137,14 +137,14 @@ class JSONSchemaDirective(Directive):
 
     def make_nodes(self, schema):
         table = self.table(schema)
-        include_unused = set(self.include) - self.include_used
-        collapse_unused = set(self.collapse) - self.collapse_used
+        include_unused = set(map(tuple, self.include)) - self.include_used
+        collapse_unused = set(map(tuple, self.collapse)) - self.collapse_used
         nodes = [table]
         if collapse_unused:
-            msg = "Collapse values don't exist: {}".format(collapse_unused)
+            msg = "Collapse values don't exist: {}".format(['/'.join(path) for path in collapse_unused])
             nodes.insert(0, self.state.document.reporter.warning(msg))
         if include_unused:
-            msg = "Include values don't exist: {}".format(include_unused)
+            msg = "Include values don't exist: {}".format(['/'.join(path) for path in include_unused])
             nodes.insert(0, self.state.document.reporter.warning(msg))
         return nodes
 
@@ -162,15 +162,16 @@ class JSONSchemaDirective(Directive):
         tbody = nodes.tbody()
         tgroup += tbody
         for prop in schema:
+            path = prop.name.split('/')
             if self.include:
-                if prop.name.startswith(tuple(self.include)):
-                    if prop.name in self.include:
-                        self.include_used.add(prop.name)
+                if any(map(lambda x: x == path[:len(x)], self.include)):
+                    if path in self.include:
+                        self.include_used.add(tuple(path))
                 else:
                     continue
-            if prop.name.startswith(tuple(self.collapse)):
-                if prop.name in self.collapse:
-                    self.collapse_used.add(prop.name)
+            if any(map(lambda x: x == path[:len(x)], self.collapse)):
+                if path in self.collapse:
+                    self.collapse_used.add(tuple(path))
                 else:
                     continue
             if '^' in prop.name:
