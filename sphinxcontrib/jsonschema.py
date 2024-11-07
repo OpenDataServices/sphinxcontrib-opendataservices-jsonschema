@@ -164,12 +164,12 @@ class JSONSchemaDirective(Directive):
         for prop in schema:
             path = prop.name.split('/')
             if self.include:
-                if any(map(lambda x:  x == path[:len(x)], self.include)):
+                if any(map(lambda x: x == path[:len(x)], self.include)):
                     if path in self.include:
                         self.include_used.add(tuple(path))
                 else:
                     continue
-            if any(map(lambda x:  x == path[:len(x)], self.collapse)):
+            if any(map(lambda x: x == path[:len(x)], self.collapse)):
                 if path in self.collapse:
                     self.collapse_used.add(tuple(path))
                 else:
