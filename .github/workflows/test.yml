@@ -9,13 +9,13 @@ jobs:
       matrix:
         python-version: [  '3.8', '3.9', '3.10', '3.11']
         # Removed testing of myst-parser-version<0.18.0
-        myst-parser-version: [ '>=0.18.0,<0.19', '>=0.19.0,<1.0', '>=1.0.0,<2', '>=2.0.0,<3']
+        myst-parser-version: [ '>=0.18.0,<0.19', '>=0.19.0,<1.0', '>=1.0.0,<2', '>=2.0.0,<3', '>=3.0.0,<4']
         jsonref-version: [">1"]
         include:
           # jsonref 1.0 has a backwards incompatible change - make sure we test just once with an older version of jsonref
           - python-version: '3.11'
             jsonref-version: "==0.3"
-            myst-parser-version: '>=0.18.0'
+            myst-parser-version: '>=3.0.0,<4'
     steps:
     - uses: actions/checkout@v2
     - name: Setup python
