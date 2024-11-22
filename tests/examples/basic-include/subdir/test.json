@@ -1,0 +1,22 @@
+{
+   "type": "object",
+   "properties": {
+      "id": {
+         "type": "string"
+      },
+      "identifier": {
+         "type": "string"
+      },
+      "name": {
+         "type": "object",
+         "properties": {
+            "formal": {
+               "type": "string"
+            },
+            "informal": {
+               "type": "string"
+            }
+         }
+      }
+   }
+}
