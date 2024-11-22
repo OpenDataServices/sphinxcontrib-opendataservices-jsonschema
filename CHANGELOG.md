@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.7.1] - 2024-11-25
+
 ### Fixed
 
 - include & collapse fix; only work on names that match fully, not just those that start with https://github.com/OpenDataServices/sphinxcontrib-opendataservices-jsonschema/pull/60
