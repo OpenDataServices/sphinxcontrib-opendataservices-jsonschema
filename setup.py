@@ -47,6 +47,8 @@ setup(
             'lxml',
             'defusedxml',  # Not directly used, but require because of issue with sphinx.testing.fixtures plugin
             'pytest',
+            'sphinx',
+            'sphinx-rtd-theme',
         ],
     },
     namespace_packages=['sphinxcontrib'],
