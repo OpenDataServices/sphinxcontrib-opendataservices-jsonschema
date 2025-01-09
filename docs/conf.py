@@ -10,3 +10,5 @@ html_extra_path = [
     'example_schema.json',
     'example_schema_with_external_refs.json'
 ]
+
+html_theme = "odsc_default_sphinx_theme"
