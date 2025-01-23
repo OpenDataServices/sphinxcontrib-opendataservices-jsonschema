@@ -2,3 +2,5 @@
 sphinx
 lxml
 flake8<6
+odsc-default-sphinx-theme
+
