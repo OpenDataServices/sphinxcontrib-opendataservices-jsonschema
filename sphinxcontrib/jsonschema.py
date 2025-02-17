@@ -223,10 +223,14 @@ class JSONSchemaDirective(Directive):
                     reference = nodes.reference('', '', nodes.Text(ref), internal=False,
                                                 refuri='#' + nodes.make_id(ref), anchorname='')
                     cell += nodes.paragraph('', nodes.Text('\n\nSee '), reference)
-                if prop.deprecated:
+                if prop.deprecated or prop.deprecatedDetails:
+                    if prop.deprecatedDetails:
+                        deprecated = prop.deprecatedDetails
+                    else:
+                        deprecated = prop.deprecated
                     cell += nodes.paragraph('', nodes.Text('This property was deprecated in version {}'
-                                                           .format(prop.deprecated['deprecatedVersion'])))
-                    cell += nodes.paragraph('', nodes.Text(prop.deprecated['description']))
+                                                           .format(deprecated['deprecatedVersion'])))
+                    cell += nodes.paragraph('', nodes.Text(deprecated['description']))
             row += cell
         tbody += row
 
