@@ -3,32 +3,29 @@ on: [push, pull_request]
 
 jobs:
   test:
-    # Need to use an older Ubuntu so Python 3.6 is available
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: [  '3.8', '3.9', '3.10', '3.11']
+        python-version: [  '3.9', '3.10', '3.11', '3.12' ]
         # Removed testing of myst-parser-version<0.18.0
-        myst-parser-version: [ '>=0.18.0,<0.19', '>=0.19.0,<1.0', '>=1.0.0,<2', '>=2.0.0,<3', '>=3.0.0,<4']
+        myst-parser-version: [ '>=0.18.0,<0.19', '>=0.19.0,<1.0', '>=1.0.0,<2', '>=2.0.0,<3', '>=3.0.0,<4', '>=4,<5' ]
         jsonref-version: [">1"]
         include:
           # jsonref 1.0 has a backwards incompatible change - make sure we test just once with an older version of jsonref
           - python-version: '3.11'
             jsonref-version: "==0.3"
             myst-parser-version: '>=3.0.0,<4'
+        exclude:
+          # myst-parser 4 dropped support for Python 3.9
+          - python-version: '3.9'
+            myst-parser-version: '>=4,<5'
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Setup python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         architecture: x64
-    - uses: actions/cache@v1
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}-${{ matrix.python-version }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
     - run: pip install -e .[test]
     - run: pip install 'jsonref${{ matrix.jsonref-version }}'
     - run: pip install "myst-parser${{ matrix.myst-parser-version }}"

@@ -32,7 +32,7 @@ setup(
     platforms='any',
     packages=find_packages(),
     include_package_data=True,
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     install_requires=[
         'docutils',
         'jsonref',
