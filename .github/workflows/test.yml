@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: [  '3.9', '3.10', '3.11', '3.12' ]
-        # Removed testing of myst-parser-version<0.18.0
-        myst-parser-version: [ '>=0.18.0,<0.19', '>=0.19.0,<1.0', '>=1.0.0,<2', '>=2.0.0,<3', '>=3.0.0,<4', '>=4,<5' ]
+        python-version: [  '3.9', '3.10', '3.11', '3.12', '3.13' ]
+        # If you change myst-parser-version versions change the requirment constraints in setup.py too!
+        myst-parser-version: [ '>=0.19.0,<1.0', '>=1.0.0,<2', '>=2.0.0,<3', '>=3.0.0,<4', '>=4,<5' ]
         jsonref-version: [">1"]
         include:
           # jsonref 1.0 has a backwards incompatible change - make sure we test just once with an older version of jsonref
