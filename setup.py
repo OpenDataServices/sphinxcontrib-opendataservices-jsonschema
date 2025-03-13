@@ -37,7 +37,7 @@ setup(
         'docutils',
         'jsonref',
         'jsonpointer',
-        'myst-parser',
+        'myst-parser>=0.19.0',
         'referencing',
         'jscc',
     ],
