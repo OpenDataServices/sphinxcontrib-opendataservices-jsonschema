@@ -34,6 +34,17 @@ With include option
    :include: id,name,age/actual
 
 
+With prefix option
+------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :prefix: myprefix
+
+.. jsonschema:: example_schema.json
+   :prefix: myprefix
+
 With collapse option
 --------------------
 

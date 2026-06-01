@@ -43,6 +43,20 @@ You can pass the optional setting `collapse`.
 If passed, then any schema below the passed key will not be shown.
 
 
+Option: prefix
+--------------
+
+You can pass the optional setting `prefix`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :prefix: myprefix
+
+If passed, the value is prepended to the HTML anchor ID generated for each property. Without a prefix the anchor ID is formed from the filename, the pointer (if set), and the property path — for example ``test.json,,name``. With ``:prefix: myprefix`` it becomes ``myprefix,test.json,,name``.
+
+This is useful when the same schema is included more than once in a documentation site, where duplicate anchor IDs would otherwise cause conflicts.
+
 Option: pointer
 ---------------
 
