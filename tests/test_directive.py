@@ -92,3 +92,22 @@ def test_basic_collapseonref(app, status, warning):
 @pytest.mark.sphinx(buildername='html', srcdir=path('basic-prefix'), freshenv=True)
 def test_basic_prefix(app, status, warning):
     assert_build(app, status, warning, 'basic-prefix')
+
+
+@pytest.mark.sphinx(buildername='html', srcdir=path('basic-addtargets'), freshenv=True)
+def test_basic_addtargets(app, status, warning):
+    assert_build(app, status, warning, 'basic-addtargets')
+
+
+@pytest.mark.sphinx(buildername='html', srcdir=path('basic-addtargets-crossref'), freshenv=True)
+def test_basic_addtargets_crossref(app, status, warning):
+    """addtargets registers targets with Sphinx so :ref: links from other pages resolve."""
+    app.build()
+    assert 'build succeeded' in status.getvalue()
+    assert warning.getvalue().strip() == ''
+
+    with open(path('basic-addtargets-crossref', '_build', 'html', 'crossref.html'), encoding='utf-8') as f:
+        doc = lxml.html.fromstring(f.read())
+
+    links = doc.xpath('//a[@class="reference internal"]')
+    assert any(link.get('href') == 'index.html#test.json,,id' for link in links)

@@ -57,6 +57,20 @@ If passed, the value is prepended to the HTML anchor ID generated for each prope
 
 This is useful when the same schema is included more than once in a documentation site, where duplicate anchor IDs would otherwise cause conflicts.
 
+Option: addtargets
+------------------
+
+You can pass the optional flag `addtargets`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :addtargets:
+
+If passed, each property's anchor is registered with Sphinx's cross-reference system, making it referenceable from other pages using the ``:ref:`` role. Without this flag the anchor IDs still appear in the HTML (so ``#anchor`` links work within the same page), but Sphinx does not know about them.
+
+If the same schema is included on multiple pages, use ``:prefix:`` alongside ``:addtargets:`` to keep anchor IDs unique and avoid duplicate target warnings.
+
 Option: pointer
 ---------------
 

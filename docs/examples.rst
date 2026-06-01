@@ -45,6 +45,21 @@ With prefix option
 .. jsonschema:: example_schema.json
    :prefix: myprefix
 
+With addtargets flag
+--------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :addtargets:
+
+    See the :ref:`id field <example_schema.json,,id>`.
+
+.. jsonschema:: example_schema.json
+   :addtargets:
+
+See the :ref:`id field <example_schema.json,,id>`.
+
 With collapse option
 --------------------
 
