@@ -70,6 +70,7 @@ class JSONSchemaDirective(Directive):
     option_spec = {
         'include': directives.unchanged,
         'collapse': directives.unchanged,
+        'collapseonref': directives.flag,
         'pointer': directives.unchanged,
         'nocrossref': directives.flag,
         'addtargets': directives.flag,
@@ -162,6 +163,8 @@ class JSONSchemaDirective(Directive):
         tgroup += nodes.thead('', header_row)
         tbody = nodes.tbody()
         tgroup += tbody
+        collapse_on_ref = 'collapseonref' in self.options
+        ref_paths = set()
         for prop in schema:
             path = prop.name.split('/')
             if self.include:
@@ -174,6 +177,14 @@ class JSONSchemaDirective(Directive):
                 if path in self.collapse:
                     self.collapse_used.add(tuple(path))
                 else:
+                    continue
+            if collapse_on_ref:
+                path_tuple = tuple(path)
+                if hasattr(prop.attributes, '__reference__') and prop.attributes.__reference__.get('$ref'):
+                    ref_paths.add(path_tuple)
+                elif hasattr(prop.items, '__reference__') and prop.items.__reference__.get('$ref'):
+                    ref_paths.add(path_tuple)
+                if any(path_tuple[:len(r)] == r and path_tuple != r for r in ref_paths):
                     continue
             if '^' in prop.name:
                 # Skip patternProperties

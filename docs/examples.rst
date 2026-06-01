@@ -34,6 +34,32 @@ With include option
    :include: id,name,age/actual
 
 
+With prefix option
+------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :prefix: myprefix
+
+.. jsonschema:: example_schema.json
+   :prefix: myprefix
+
+With addtargets flag
+--------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :addtargets:
+
+    See the :ref:`id field <example_schema.json,,id>`.
+
+.. jsonschema:: example_schema.json
+   :addtargets:
+
+See the :ref:`id field <example_schema.json,,id>`.
+
 With collapse option
 --------------------
 
@@ -57,6 +83,17 @@ With pointer option
 .. jsonschema:: example_schema.json
    :pointer: /definitions/Address
 
+
+With collapseonref flag
+-----------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :collapseonref:
+
+.. jsonschema:: example_schema.json
+   :collapseonref:
 
 With nocrossref flag
 --------------------
