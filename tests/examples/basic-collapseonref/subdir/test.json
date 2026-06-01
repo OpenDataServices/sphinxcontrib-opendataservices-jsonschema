@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "address": {
+      "$ref": "#/definitions/Address",
+      "description": "The person's address."
+    },
+    "tag": {"type": "string"}
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": {"type": "string"},
+        "city": {"type": "string"}
+      }
+    }
+  }
+}

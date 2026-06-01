@@ -57,6 +57,20 @@ You can use this to only show a section of the JSON Schema - in this case, only 
 
 Note the key here is the key is the key in the JSON Schema not the key in the JSON data. This means you can pass keys like `/definitions/Address`.
 
+Option: collapseonref
+---------------------
+
+You can pass the optional flag `collapseonref`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :collapseonref:
+
+If passed, any property that uses ``$ref`` will be collapsed — its child properties will not be shown. This is useful when definitions are documented separately and you want to avoid duplicating their fields inline.
+
+This is equivalent to listing every ``$ref`` property path in the ``collapse`` option, but updates automatically when the schema changes.
+
 Option: nocrossref
 ------------------
 

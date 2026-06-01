@@ -58,6 +58,17 @@ With pointer option
    :pointer: /definitions/Address
 
 
+With collapseonref flag
+-----------------------
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :collapseonref:
+
+.. jsonschema:: example_schema.json
+   :collapseonref:
+
 With nocrossref flag
 --------------------
 

@@ -82,3 +82,8 @@ def test_basic_gettext_myst(app, status, warning):
 @pytest.mark.sphinx(buildername='html', srcdir=path('basic-include'), freshenv=True)
 def test_basic_include(app, status, warning):
     assert_build(app, status, warning, 'basic-include')
+
+
+@pytest.mark.sphinx(buildername='html', srcdir=path('basic-collapseonref'), freshenv=True)
+def test_basic_collapseonref(app, status, warning):
+    assert_build(app, status, warning, 'basic-collapseonref')
