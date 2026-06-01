@@ -43,34 +43,6 @@ You can pass the optional setting `collapse`.
 If passed, then any schema below the passed key will not be shown.
 
 
-Option: prefix
---------------
-
-You can pass the optional setting `prefix`.
-
-.. code-block:: rst
-
-    .. jsonschema:: example_schema.json
-       :prefix: myprefix
-
-If passed, the value is prepended to the HTML anchor ID generated for each property. Without a prefix the anchor ID is formed from the filename, the pointer (if set), and the property path — for example ``test.json,,name``. With ``:prefix: myprefix`` it becomes ``myprefix,test.json,,name``.
-
-This is useful when the same schema is included more than once in a documentation site, where duplicate anchor IDs would otherwise cause conflicts.
-
-Option: addtargets
-------------------
-
-You can pass the optional flag `addtargets`.
-
-.. code-block:: rst
-
-    .. jsonschema:: example_schema.json
-       :addtargets:
-
-If passed, each property's anchor is registered with Sphinx's cross-reference system, making it referenceable from other pages using the ``:ref:`` role. Without this flag the anchor IDs still appear in the HTML (so ``#anchor`` links work within the same page), but Sphinx does not know about them.
-
-If the same schema is included on multiple pages, use ``:prefix:`` alongside ``:addtargets:`` to keep anchor IDs unique and avoid duplicate target warnings.
-
 Option: pointer
 ---------------
 
@@ -141,3 +113,37 @@ You can pass the optional flag `allowexternalrefs`.
 If passed, you can use `$ref` to load remote files and they will be loaded.
 
 If not passed, any remote references will silently be ignored.
+
+
+HTML anchors and cross-references
+----------------------------------
+
+The directive generates an HTML anchor ID for each property row, formed from the filename, the pointer (if set), and the property path, separated by commas — for example ``test.json,,name``. The following options control this behaviour.
+
+Option: prefix
+~~~~~~~~~~~~~~
+
+You can pass the optional setting `prefix`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :prefix: myprefix
+
+If passed, the value is prepended to the anchor ID for each property — for example, ``:prefix: myprefix`` changes ``test.json,,name`` to ``myprefix,test.json,,name``.
+
+This is useful when the same schema is included more than once in a documentation site, where duplicate anchor IDs would otherwise cause conflicts.
+
+Option: addtargets
+~~~~~~~~~~~~~~~~~~
+
+You can pass the optional flag `addtargets`.
+
+.. code-block:: rst
+
+    .. jsonschema:: example_schema.json
+       :addtargets:
+
+If passed, each property's anchor is registered with Sphinx's cross-reference system, making it referenceable from other pages using the ``:ref:`` role. Without this flag the anchor IDs still appear in the HTML (so ``#anchor`` links work within the same page), but Sphinx does not know about them.
+
+If the same schema is included on multiple pages, use ``:prefix:`` alongside ``:addtargets:`` to keep anchor IDs unique and avoid duplicate target warnings.
