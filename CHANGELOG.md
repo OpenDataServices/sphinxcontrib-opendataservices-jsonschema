@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- support for JSON Schema 2020-12 `deprecated` keyword
+
 ## [0.7.1] - 2024-11-25
 
 ### Fixed
