@@ -76,6 +76,7 @@ class JSONSchemaDirective(Directive):
         'externallinks': directives.unchanged,
         'allowexternalrefs': directives.flag,
         'allowurnrefs': directives.flag,
+        'prefix': directives.unchanged,
     }
     # Add a rollup option here
 
@@ -185,10 +186,12 @@ class JSONSchemaDirective(Directive):
 
     def row(self, prop, tbody):
         row = nodes.row()
-        anchor = '{},{},{}'.format(
+        parts = [
+            self.options.get('prefix'),
             self.arguments[0].split('/')[-1],
             self.options.get('pointer', ''),
-            prop.name)
+            prop.name]
+        anchor = ','.join([p for p in parts if p is not None])
         target = nodes.target(ids=[anchor], names=[anchor.lower()])
         if 'addtargets' in self.options:
             self.state.document.note_explicit_target(target)

@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-- support for JSON Schema 2020-12 `deprecated` keyword
+### Changed
+
+- Add support for JSON Schema 2020-12 `deprecated` keyword
+- Dropped support for Python 3.8, as this is end of life
+- myst-parser-version<0.19.0 removed from test matrix, as too old and dependency issues with Python 3.13
 
 ## [0.7.1] - 2024-11-25
 

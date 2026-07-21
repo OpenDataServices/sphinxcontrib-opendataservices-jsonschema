@@ -7,9 +7,15 @@ from tests import path
 
 
 def normalize(string):
-    # Remove all newlines and indentation to normalise, but then add some
+    # Remove all newlines and indentation to normalise
+    string = re.sub(r"\n *", "", string)
+    # Remove <div class="clearer"></div> - some versions add this in and some don't,
+    # so we need to normalise to one to make our test work with all versions
+    string = string.replace('<div class="clearer"></div>', "")
+    # but then add some
     # newlines back in to make pytest comparison output easier to read.
-    return re.sub(r'\n *', '', string).replace(">", ">\n")
+    string = string.replace(">", ">\n")
+    return string
 
 
 def assert_build(app, status, warning, basename, buildername='html', messages=None):
