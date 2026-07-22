@@ -1,0 +1,56 @@
+{
+  "description": "Data for people",
+  "type": "object",
+  "properties": {
+    "name": "string",
+    "age": {
+      "description": "description with [a link](http://example.org)",
+      "type": "integer",
+      "maximum": "80",
+      "minimum": "20"
+    },
+    "address": {
+      "$ref": "/definitions/Address_definition",
+      "title": "Address",
+      "description": "Where this person lives. NOTE: The underscore should become a dash in the anchor name."
+    },
+    "otherContacts": {
+      "type": "array",
+      "default": "['abc', 'def', 'ghi']",
+      "items": {
+        "type": "string"
+      }
+    },
+    "otherNames": {
+      "meta_description": "Test an array that doesn't have items",
+      "type": "array",
+      "deprecated": true,
+      "deprecatedDetails": {
+        "deprecatedVersion": "1.0",
+        "description": "This is an example deprecation description intended to notify which other fields people should use."
+      }
+    }
+  },
+  "required": [
+    "otherContacts"
+  ],
+  "definitions": {
+    "Address_definition": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Address Details"
+        },
+        "postcode": {
+          "type": "string",
+          "title": "Postcode"
+        },
+        "country": {
+          "type": "string",
+          "title": "Country"
+        }
+      }
+    }
+  }
+}
